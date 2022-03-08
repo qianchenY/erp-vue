@@ -59,3 +59,4 @@ $color: blue;
 @function get_vw($size, $media: 991) {
 	@return math.div($size, $media) * 100vw;
 }
+

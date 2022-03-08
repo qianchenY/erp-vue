@@ -12,3 +12,11 @@ app.use(router);
 app.use(ElementPlus);
 
 app.mount('#app');
+
+router.beforeEach((to) => {
+    if(to.name != 'login' && !store.state.isLogin){
+        return {
+            name: 'login'
+        };
+    }
+})

@@ -3,7 +3,12 @@ import { createStore } from 'vuex';
 const store = createStore({
     state(){
         return {
-            count: 0
+            isLogin: false
+        }
+    },
+    mutations: {
+        toggleLoginStatus(state, bol){
+            state.isLogin = bol;
         }
     }
 })
