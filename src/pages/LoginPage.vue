@@ -22,6 +22,9 @@
     import { reactive, ref } from 'vue';
     import { useStore } from 'vuex';
     import { useRouter } from 'vue-router'
+    import { getCurrentInstance } from 'vue'
+
+    const { proxy } = getCurrentInstance()
 
     const store = useStore();
     const router = useRouter();
@@ -55,17 +58,23 @@
             }
         ],
     })
-
+    
     let onSubmit = (formel) => {
         if (!formel) return
 
         formel.validate((valid) => {
+
             if (valid) {
+
                 console.log('submit');
-                store.commit('toggleLoginStatus', true);
-                console.log('123');
+                store.commit('toggleLoginStatus', false);
                 router.push("/");
             } else {
+                proxy.axios.get('/api/pc', {
+                    name: form.name
+                }).then(function(res){
+                    console.log(res);
+                })
                 console.log('error submit!')
                 return false
             }
